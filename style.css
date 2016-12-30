@@ -1,0 +1,68 @@
+body {
+    background-color: grey;
+    height: 100vh;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+#navpanel{
+    float: left;
+    background-color: lightgray;
+    height: 100%;
+    width: 200px;
+    margin: 3px;
+    border: solid black;
+    text-align: center;
+}
+#main{
+    float:left;
+    background-color: lightgrey;
+    height: 100%;
+    width: calc(100% - 215px);
+    margin: 3px;
+    border: solid black;
+}
+
+#welcome-panel, #search-panel{
+    padding: 10px;
+}
+
+.privacy-setting{
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+    width:8ch;
+}
+
+.room-tags{
+    text-align: center;
+}
+
+.rooms>.list-group-item{
+    padding: 5px;
+    margin:2px;
+}
+
+.label.tag{
+    margin:2px
+}
+
+div#tab-panel.rooms-tab>ul>li>a{
+    border-width: 1px;
+    border-color: black;
+    border-bottom-color: transparent;
+    background-color: white;
+}
+
+div#tab-panel.rooms-tab>ul>li.active>a{
+    background-color: lightgray
+}
+
+div#tab-panel>ul{
+    background-color: dimgray;
+    border-bottom: 1px solid black;
+    padding-top: 3px;
+    padding-left:3px;
+    padding-right:3px;
+}
