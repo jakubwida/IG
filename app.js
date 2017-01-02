@@ -37,6 +37,19 @@ app.controller("main", ["$scope", "users", function ($scope, users) {
     activeTab = { index: 0 }
     $scope.activeTab = activeTab;
 
+    $scope.openChat = function (name) {
+        var tab = {
+            title: name,
+            content: "templates/chat.html"
+        }
+        var i = tabs.indexOf(tab)
+        if (i == -1) {
+            tabs.push(tab);
+            i = tabs.length - 1
+        }
+        activeTab.index = i;
+    }
+
     $scope.newSearch = function () {
         tabs.push({
             title: "Search",
@@ -100,17 +113,19 @@ app.controller("search", ["$scope", "$filter", function ($scope, $filter) {
 app.controller("login", ["$scope", "users", function ($scope, users) {
     var user = { name: null, password: null }
     $scope.user = user;
-    $scope.success = false;
+    $scope.success = null;
+    $scope.error = null;
     $scope.login = function () {
         $scope.success = users.login(user.name, user.password)
+        $scope.error = !$scope.success;
     }
 }])
 
 app.controller("register", ["$scope", "users", function ($scope, users) {
     var user = { name: null, password: null }
     $scope.user = user;
-    $scope.success = null
-    $scope.error = null
+    $scope.success = null;
+    $scope.error = null;
     $scope.register = function () {
         $scope.success = users.register(user.name, user.password)
         $scope.error = !$scope.success;

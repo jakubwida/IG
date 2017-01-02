@@ -19,12 +19,12 @@
 </head>
 
 <body ng-app="ChatTree" ng-controller="main">
-    <div id="navpanel">
+    <div id="nav-panel">
         <h1>ChatTree</h1>
         <span class="btn btn-default" ng-click="newSearch()">New search<span class="pull-right glyphicon glyphicon-search"></span></span>
     </div>
     <div id="main">
-        <div id="controlpanel">
+        <div id="control-panel">
             <span class="btn btn-sm btn-default" ng-if="user==null" ng-click="login()">Login<span class="pull-right glyphicon glyphicon-user"></span></span>
             <span class="btn btn-sm btn-default" ng-if="user==null" ng-click="register()">Register<span class="pull-right glyphicon glyphicon-pencil"></span></span>
             <span ng-if="user!=null">Hello, {{user}}!</span>

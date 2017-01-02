@@ -6,7 +6,7 @@ body {
     margin: 0;
 }
 
-#navpanel{
+#nav-panel{
     float: left;
     background-color: lightgray;
     height: 100%;
@@ -17,8 +17,8 @@ body {
     text-align: center;
 }
 
-#navpanel>.btn,
-#controlpanel>.btn{
+#nav-panel>.btn,
+#control-panel>.btn{
     width:150px;
     text-align: left;
     white-space: normal;
@@ -34,13 +34,13 @@ body {
     border: solid black;
 }
 
-#controlpanel{
+#control-panel{
     width:100%;
     height:40px;
     padding: 5px;
 }
 
-#welcome-panel, #search-panel, #login-panel, #register-panel{
+.welcome-panel, .search-panel, .login-panel, .register-panel, .chat-panel{
     padding: 10px;
 }
 

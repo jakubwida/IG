@@ -1,4 +1,4 @@
-<div id="search-panel" ng-controller="search">
+<div class="search-panel" ng-controller="search">
     <div class="input-group">
         <input type="text" class="form-control" ng-model="searchTerm" placeholder="Enter room name or tag">
         <span class="input-group-btn">
@@ -9,7 +9,7 @@
         <li ng-repeat="room in rooms" class="list-group-item">
             <span class="privacy-setting label" ng-class="room.private ? 'label-danger' : 'label-success'">
                 {{room.private ? 'Private' : 'Public'}}
-            </span>&nbsp;{{room.name}}&nbsp;
+            </span>&nbsp;{{room.name}}&nbsp;<label ng-click="openChat(room.name)">Join</label>
             <span class="room-tags">
                 <span class="tag label label-info" ng-repeat="tag in room.tags">
                 {{tag}}
