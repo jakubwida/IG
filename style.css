@@ -40,7 +40,7 @@ body {
     padding: 5px;
 }
 
-.welcome-panel, .search-panel, .login-panel, .register-panel, .chat-panel{
+.welcome-panel, .search-panel, .login-panel, .register-panel, .room-panel{
     padding: 10px;
 }
 
@@ -81,4 +81,13 @@ div#tab-panel>ul{
     padding-top: 3px;
     padding-left:3px;
     padding-right:3px;
+}
+
+.chat-panel{
+    width:calc(100% - 120px);
+    height:100%;
+}
+.participants-panel{
+    width:150px;
+    height:100%;
 }

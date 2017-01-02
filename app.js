@@ -5,7 +5,7 @@ app.factory("users", function () {
         loggedUser: null,
         getUser: function () { return user.loggedUser }
     }
-    user.users = {}
+    user.users = { 'test_user': 'tester' }
     user.login = function (username, pass) {
         if (user.users[username] == pass) {
             user.loggedUser = username;
@@ -26,7 +26,33 @@ app.factory("users", function () {
     return user;
 })
 
-app.controller("main", ["$scope", "users", function ($scope, users) {
+app.factory("rooms", function () {
+    var rooms = {
+        joinedRooms: [],
+        availableRooms: [
+            { name: "room1", tags: ['tag', 'game'], private: false },
+            { name: "room2", tags: ['tagged', 'game'], private: true }],
+        availableTags: [
+            'Game', 'PS4', 'Movies', 'X360', 'Comics', 'DC', 'Marvel', 'AngularJS', 'Bootstrap', 'C++', 'Python', 'Lua'
+        ],
+        logout: function () {
+            rooms.joinedRooms.splice(0, rooms.joinedRooms.length);
+        },
+        joined: function (room) {
+            return rooms.joinedRooms.findIndex(function (name) { return room == name }) != -1
+        },
+        join: function (room) {
+            rooms.joinedRooms.push(room);
+        },
+        leave: function (room) {
+            var i = rooms.joinedRooms.indexOf(room);
+            rooms.joinedRooms.splice(i, 1);
+        }
+    }
+    return rooms;
+})
+
+app.controller("main", ["$scope", "users", "rooms", function ($scope, users, rooms) {
     var tabs = []
     $scope.tabs = tabs;
 
@@ -42,7 +68,8 @@ app.controller("main", ["$scope", "users", function ($scope, users) {
             title: name,
             content: "templates/chat.html"
         }
-        var i = tabs.indexOf(tab)
+        if (!rooms.joined(name)) rooms.join(name)
+        var i = tabs.findIndex(function (tab) { return tab.title == name; })
         if (i == -1) {
             tabs.push(tab);
             i = tabs.length - 1
@@ -81,6 +108,7 @@ app.controller("main", ["$scope", "users", function ($scope, users) {
     }
     $scope.logout = function () {
         users.logout();
+        rooms.logout();
         resetTabs();
     }
 
@@ -102,12 +130,11 @@ app.controller("main", ["$scope", "users", function ($scope, users) {
     });
 }])
 
-app.controller("search", ["$scope", "$filter", function ($scope, $filter) {
+app.controller("search", ["$scope", "$filter", "rooms", function ($scope, $filter, rooms) {
     $scope.searchTerm = null
-    $scope.rooms = [
-        { name: "room1", tags: ['tag', 'game'], private: false },
-        { name: "room2", tags: ['tagged', 'game'], private: true }
-    ]
+    $scope.rooms = rooms.availableRooms;
+    $scope.joined = rooms.joined;
+    $scope.notJoined = function (room) { return !rooms.joined(room.name); }
 }])
 
 app.controller("login", ["$scope", "users", function ($scope, users) {

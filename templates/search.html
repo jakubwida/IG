@@ -6,10 +6,10 @@
       </span>
     </div>
     <ol class="list-group rooms">
-        <li ng-repeat="room in rooms" class="list-group-item">
+        <li ng-repeat="room in rooms | filter:notJoined" class="list-group-item">
             <span class="privacy-setting label" ng-class="room.private ? 'label-danger' : 'label-success'">
                 {{room.private ? 'Private' : 'Public'}}
-            </span>&nbsp;{{room.name}}&nbsp;<label ng-click="openChat(room.name)">Join</label>
+            </span>&nbsp;{{room.name}}&nbsp;<label ng-if="user!=null" ng-click="openChat(room.name)">Join!</label>
             <span class="room-tags">
                 <span class="tag label label-info" ng-repeat="tag in room.tags">
                 {{tag}}
