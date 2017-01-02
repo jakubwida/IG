@@ -1,0 +1,19 @@
+<div id="register-panel" ng-controller="register">
+    <form name="registerForm">
+        <div class="form-group" ng-class="registerForm.name.$invalid ? 'has-error': ''">
+            <label for="registername">Username</label>
+            <input required id="registername" name="name" type="text" ng-minlength="3" class="form-control" ng-model="user.name" placeholder="Username">
+        </div>
+        <div class="form-group" ng-class="registerForm.pass.$invalid? 'has-error': ''">
+            <label for="registerpass">Password</label>
+            <input required id="registerpass" name="pass" type="password" ng-minlength="6" class="form-control" ng-model="user.password"
+                placeholder="Password">
+        </div>
+        <button class="btn btn-default" ng-disabled="registerForm.$invalid" type="submit" ng-click="register()">Register</button>
+        <div>
+            Your username should be at least 3 characters long.<br>Your password should be at leat 6 charachters long.
+        </div>
+        <div ng-show="error" class="btn bg-danger">Failed to register new user</div>
+        <div ng-show="success" class="btn bg-info">You can now login using your username and password</div>
+    </form>
+</div>

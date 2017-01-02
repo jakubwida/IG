@@ -1,0 +1,15 @@
+<div id="login-panel" ng-controller="login">
+    <form name="loginForm">
+        <div class="form-group" ng-class="loginForm.name.$invalid? 'has-error': ''">
+            <label for="loginname">Username</label>
+            <input required id="loginname" name="name" type="text" ng-minlength="3" class="form-control" ng-model="user.name" placeholder="Username">
+        </div>
+        <div class="form-group" ng-class="loginForm.pass.$invalid? 'has-error': ''">
+            <label for="loginpass">Password</label>
+            <input required id="loginpass" name="pass" type="password" ng-minlength="6" class="form-control" ng-model="user.password"
+                placeholder="Password">
+        </div>
+        <button class="btn btn-default" type="submit" ng-click="login()">Login</button>
+        <div ng-show="error" class="btn bg-danger">Wrong username or password</div>
+    </form>
+</div>

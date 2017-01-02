@@ -21,10 +21,17 @@
 <body ng-app="ChatTree" ng-controller="main">
     <div id="navpanel">
         <h1>ChatTree</h1>
+        <span class="btn btn-default" ng-click="newSearch()">New search<span class="pull-right glyphicon glyphicon-search"></span></span>
     </div>
     <div id="main">
-        <div id="tab-panel" class="rooms-tab" bs-tabs bs-active-pane="activeTab">
-            <div disabled="{{ tab.disabled }}" ng-include="tab.content" data-title="{{ tab.title }}" bs-pane name="{{ tab.title }}" ng-repeat="tab in tabs">
+        <div id="controlpanel">
+            <span class="btn btn-sm btn-default" ng-if="user==null" ng-click="login()">Login<span class="pull-right glyphicon glyphicon-user"></span></span>
+            <span class="btn btn-sm btn-default" ng-if="user==null" ng-click="register()">Register<span class="pull-right glyphicon glyphicon-pencil"></span></span>
+            <span ng-if="user!=null">Hello, {{user}}!</span>
+            <span class="btn btn-sm btn-default pull-right" ng-if="user!=null" ng-click="logout()">Logout</span>
+        </div>
+        <div id="tab-panel" class="rooms-tab" bs-tabs data-bs-active-pane="activeTab.index" data-template="templates/tabs.html">
+            <div ng-include="tab.content" data-title="{{ tab.title }}" bs-pane ng-repeat="tab in tabs track by $index">
             </div>
         </div>
     </div>

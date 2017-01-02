@@ -1,0 +1,10 @@
+<ul class="nav" ng-class="$navClass" role="tablist">
+    <li ng-repeat="$pane in $panes track by $index" ng-class="$index == $panes.$active ? $activeClass : ''">
+        <a role="tab" data-toggle="tab" ng-click="$setActive($index)" data-index="{{ $index }}">
+            <i class="glyphicon glyphicon-volume-up" ng-if="$index==voiceTab"></i> {{$pane.title}}
+            <i class="glyphicon glyphicon-remove" ng-if="user!=null?activeTab.index==$index : activeTab.index==$index && $index!=0" ng-click="tabs.splice($index,1)"></i>
+        </a>
+    </li>
+</ul>
+<div ng-transclude class="tab-content">
+</div>
