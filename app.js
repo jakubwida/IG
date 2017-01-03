@@ -30,8 +30,15 @@ app.factory("rooms", function () {
     var rooms = {
         joinedRooms: [],
         availableRooms: [
-            { name: "room1", tags: ['tag', 'game'], private: false },
-            { name: "room2", tags: ['tagged', 'game'], private: true }],
+            { name: "room1", tags: [], private: false },
+            { name: "room2", tags: [], private: true },
+            { name: "video1", tags: ['Movies'], private: false },
+            { name: "movies2", tags: ['Movies'], private: false },
+            { name: "video", tags: ['Movies'], private: false },
+            { name: "python", tags: ['Python'], private: true },
+            { name: "c++", tags: ['C++'], private: false },
+            { name: "xo", tags: ['Xbox One'], private: false },
+            { name: "Outside Extra", tags: ['Game', 'PS4', 'Youtube', 'X360'], private: true }],
         availableTags: [
             'Game', 'PS4', 'Movies', 'X360', 'Comics', 'DC', 'Marvel', 'AngularJS', 'Bootstrap', 'C++', 'Python', 'Lua'
         ],
@@ -131,7 +138,7 @@ app.controller("main", ["$scope", "users", "rooms", function ($scope, users, roo
 }])
 
 app.controller("search", ["$scope", "$filter", "rooms", function ($scope, $filter, rooms) {
-    $scope.searchTerm = null
+    $scope.searchTerm = '';
     $scope.rooms = rooms.availableRooms;
     $scope.joined = rooms.joined;
     $scope.notJoined = function (room) { return !rooms.joined(room.name); }
@@ -160,7 +167,23 @@ app.controller("register", ["$scope", "users", function ($scope, users) {
 }])
 
 app.controller("chatroom", ["$scope", "users", function ($scope, users) {
-    var participants = []
-    participants.push({ name: users.getUser(), muted: false })
+    $scope.currentUser = users.getUser();
+    var participants = [];
+    participants.push({ name: users.getUser(), muted: false });
+    participants.push({ name: 'guest_user1', muted: false });
+    participants.push({ name: 'guest_user2', muted: false });
+
     $scope.users = participants;
-}]) 
+
+    var messages = [];
+    $scope.messages = messages;
+
+    $scope.message = null;
+    $scope.send = function (event) {
+        var key = event.which;
+        if ((key == 13 || key == 1) && $scope.message != null) {
+            messages.push({ sender: users.getUser(), text: $scope.message });
+            $scope.message = null;
+        }
+    }
+}]); 

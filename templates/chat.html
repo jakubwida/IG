@@ -1,17 +1,22 @@
 <div class="room-panel" ng-controller="chatroom">
     <div class="chat-panel">
         <div class="chat-bubbles">
+            <ul class="chat-list">
+                <li class="chat-bubble" ng-class-odd="'odd-bubble'" ng-repeat="text in messages">
+                    <b>{{::text.sender}}</b> wrote: {{::text.text}}
+                </li>
+            </ul>
         </div>
-        <textarea class="chat-message form-control"></textarea>
+        <textarea class="chat-message form-control" ng-model="message" ng-keydown="send($event)"></textarea>
         <div>
-            <button type="button" class="btn btn-sm btn-default">Send</button>
+            <button type="button" class="btn btn-sm btn-default" ng-click="send($event)">Send</button>
             <button type="button" class="pull-right btn btn-sm btn-default">{{voiceTab!=activeTab ? 'Enter Voice Chat' : 'End Voice Chat'}}</button>
         </div>
     </div>
     <div class="participants-panel">
         <div class="participant" ng-repeat="user in users">
             {{user.name}}
-            <span class="pull-right">
+            <span ng-if="user.name!=currentUser" class="pull-right">
                 <label class="glyphicon" ng-class="user.muted ? 'glyphicon-volume-off' : 'glyphicon-volume-up'">
                     <input type="checkbox" ng-model="user.muted">
                 </label>

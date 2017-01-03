@@ -6,15 +6,17 @@
         </span>
     </div>
     <ul class="list-group rooms">
-        <li ng-repeat="room in rooms | filter:notJoined" class="list-group-item">
+        <li ng-repeat="room in rooms | filter:searchTerm | filter:notJoined" class="list-group-item">
             <span class="privacy-setting label" ng-class="room.private ? 'label-danger' : 'label-success'">
-                {{room.private ? 'Private' : 'Public'}}
-            </span>&nbsp;{{room.name}}&nbsp;<label ng-if="user!=null" ng-click="openChat(room.name)">Join!</label>
-            <span class="room-tags">
+                {{::room.private ? 'Private' : 'Public'}}
+            </span>&nbsp;{{room.name}}&nbsp;
+            <label style="cursor:pointer;" ng-if="user!=null" ng-click="!room.private && openChat(room.name)"> {{::room.private ? 'Ask to join!' : 'Join!'}}
+			</label>
+			<span class="room-tags pull-right">
                 <span class="tag label label-info" ng-repeat="tag in room.tags">
                 {{tag}}
                 </span>
-            </span>
-        </li>
-    </ul>
+			</span>
+		</li>
+	</ul>
 </div>
