@@ -237,8 +237,6 @@ app.controller("chatroom", ["$scope", "users", function ($scope, users) {
 		};
     var participants = [];
     participants.push({ name: users.getUser(), muted: false });
-    participants.push({ name: 'guest_user1', muted: false });
-    participants.push({ name: 'guest_user2', muted: false });
 	participants.push.apply(participants,generate_unique_participants())
     $scope.users = participants;
 
