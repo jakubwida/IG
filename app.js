@@ -37,10 +37,28 @@ app.factory("rooms", function () {
             { name: "video", tags: ['Movies'], private: false },
             { name: "python", tags: ['Python'], private: true },
             { name: "c++", tags: ['C++'], private: false },
-            { name: "xo", tags: ['Xbox One'], private: false },
+            { name: "Fruit exchange I", tags: ['Apple','Banana','Lemon','Fruit'], private: false },
+			{ name: "Apple computing", tags: ['Apple','Iphone','Mac'], private: false },
+			{ name: "Dirt Manufacture I", tags: ['Dirt','Ground'], private: false },
+			{ name: "Dirt Manufacture II: Dirt Returns", tags: ['Dirt','Ground','Sequel'], private: false },
+			{ name: "Game Dev exchange", tags: ['Game','Xbox One','PS4','C++','Lua'], private: false },
+			{ name: "Apartament Studio", tags: ['Youtube','Movies','Apple','Banana'], private: true },
+			{ name: "John's Fruit Stories", tags: ['Xbox One'], private: false },
+			{ name: "banana", tags: ['Banana'], private: false },
+			{ name: "The Sequel Selection", tags: ['Movies','Sequel'], private: false },
+			{ name: "Fruit exchange", tags: ['Apple','Banana','Lemon','Fruit'], private: false },
+			{ name: "Programming Parlour", tags: ['Python','C++','Lua'], private: true },
+			{ name: "paperwork", tags: ['Origami','Paper'], private: false },
+			{ name: "paperwork 2", tags: ['Origami','Paper'], private: true },
+			{ name: "the broom room", tags: [], private: false },
+            { name: "The Nerds Nostrils", tags: ['Movies','Comics','DC','Marvel'], private: false },
+            { name: "CMC Forum Chat Board", tags: ['Forum','CMC'], private: true },
+            { name: "CMC Forum Open Chat Board", tags: ['Forum','CMC'], private: false },
+            { name: "chitchat", tags: [], private: true },
+            { name: "cat chat", tags: ['Cat'], private: false },
             { name: "Outside Extra", tags: ['Game', 'PS4', 'Youtube', 'X360'], private: true }],
         availableTags: [
-            'Game', 'PS4', 'Movies', 'X360', 'Comics', 'DC', 'Marvel', 'AngularJS', 'Bootstrap', 'C++', 'Python', 'Lua'
+            'Game', 'PS4', 'Movies', 'X360', 'Comics', 'DC', 'Marvel', 'AngularJS', 'Bootstrap', 'C++', 'Python', 'Lua','Apple','Banana','Lemon','Fruit','Iphone','Mac','Dirt','Ground','Sequel'
         ],
         logout: function () {
             rooms.joinedRooms.splice(0, rooms.joinedRooms.length);
@@ -168,11 +186,60 @@ app.controller("register", ["$scope", "users", function ($scope, users) {
 
 app.controller("chatroom", ["$scope", "users", function ($scope, users) {
     $scope.currentUser = users.getUser();
+	var generate_unique_participants =function()
+		{
+		var name_list =
+			[
+			'Anthony Johnson',
+			'Jeremy Hawks',
+			'Janusz Brzeczka',
+			'Karol Nowak',
+			'Hans Otto',
+			'Sergei Sergeiovich Sergeiovsky',
+			'Ivan Ivanovich Tcherkin',
+			'Jorah Smith',
+			'Wolfgang Purtz',
+			'hAxOOrL331',
+			'xxXKancerk1dXxx',
+			'Mr Cat',
+			'Elliot Sunday',
+			'Bill Brokes',
+			'Hakashiwa Horukawa',
+			'Chris',
+			'Chris1',
+			'Chris2',
+			'Chris71',
+			'Chris1981',
+			'Chatter6',
+			'xXxDankPlankxXx',
+			'send_me_fruits'
+			];
+		var len = name_list.length;
+		var out_len=Math.floor((Math.random() * len) + 1);
+		var out_names = [];
+		while (out_len>0)
+			{
+			var num =Math.floor((Math.random() * len) + 1); 
+			if(out_names.indexOf(name_list[num])==-1)
+				{
+				out_names.push(name_list[num]);
+				out_len=out_len-1;
+				}
+			}
+		var out =[]
+		for(x in out_names)
+			{
+			
+			out.push({name:out_names[x],muted:false});
+			}
+		return out;
+		
+		};
     var participants = [];
     participants.push({ name: users.getUser(), muted: false });
     participants.push({ name: 'guest_user1', muted: false });
     participants.push({ name: 'guest_user2', muted: false });
-
+	participants.push.apply(participants,generate_unique_participants())
     $scope.users = participants;
 
     var messages = [];
