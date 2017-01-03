@@ -2,10 +2,10 @@
     <div class="input-group">
         <input type="text" class="form-control" ng-model="searchTerm" placeholder="Enter room name or tag">
         <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Search</button>
-      </span>
+            <button class="btn btn-default" type="button">Search</button>
+        </span>
     </div>
-    <ol class="list-group rooms">
+    <ul class="list-group rooms">
         <li ng-repeat="room in rooms | filter:notJoined" class="list-group-item">
             <span class="privacy-setting label" ng-class="room.private ? 'label-danger' : 'label-success'">
                 {{room.private ? 'Private' : 'Public'}}
@@ -15,7 +15,6 @@
                 {{tag}}
                 </span>
             </span>
-
         </li>
-    </ol>
+    </ul>
 </div>

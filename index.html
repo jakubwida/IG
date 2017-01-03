@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="bower_components/angular-ui-tree/dist/angular-ui-tree.css">
+    <link rel="stylesheet" href="bower_components/bootstrap-additions/dist/bootstrap-additions.min.css">
     <link rel="stylesheet" href="style.css">
     <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
@@ -21,7 +22,10 @@
 <body ng-app="ChatTree" ng-controller="main">
     <div id="nav-panel">
         <h1>ChatTree</h1>
-        <span class="btn btn-default" ng-click="newSearch()">New search<span class="pull-right glyphicon glyphicon-search"></span></span>
+        <span class="btn btn-default" ng-click="newSearch()">New search <span class="pull-right glyphicon glyphicon-search"></span></span>
+        <div ng-if="user!=null">
+            <span class="btn btn-default" ng-click="newRoom()">Create Room <span class="pull-right glyphicon glyphicon-plus"></span></span>
+        </div>
     </div>
     <div id="main">
         <div id="control-panel">

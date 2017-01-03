@@ -158,3 +158,9 @@ app.controller("register", ["$scope", "users", function ($scope, users) {
         $scope.error = !$scope.success;
     }
 }])
+
+app.controller("chatroom", ["$scope", "users", function ($scope, users) {
+    var participants = []
+    participants.push({ name: users.getUser(), muted: false })
+    $scope.users = participants;
+}]) 

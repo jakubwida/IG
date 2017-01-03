@@ -1,4 +1,26 @@
-<div class="room-panel">
-    <div class="chat-panel"></div>
-    <div class="participants-panel"></div>
+<div class="room-panel" ng-controller="chatroom">
+    <div class="chat-panel">
+        <div class="chat-bubbles">
+        </div>
+        <textarea class="chat-message form-control"></textarea>
+        <div>
+            <button type="button" class="btn btn-sm btn-default">Send</button>
+            <button type="button" class="pull-right btn btn-sm btn-default">{{voiceTab!=activeTab ? 'Enter Voice Chat' : 'End Voice Chat'}}</button>
+        </div>
+    </div>
+    <div class="participants-panel">
+        <div class="participant" ng-repeat="user in users">
+            {{user.name}}
+            <span class="pull-right">
+                <label class="glyphicon" ng-class="user.muted ? 'glyphicon-volume-off' : 'glyphicon-volume-up'">
+                    <input type="checkbox" ng-model="user.muted">
+                </label>
+                <span bs-dropdown data-container='body' data-placement='bottom-right' class="glyphicon glyphicon-cog"></span>
+            <ul class="dropdown-menu" role="menu">
+                <li><a>Report</a></li>
+                <li><a>Contact</a></li>
+            </ul>
+            </span>
+        </div>
+    </div>
 </div>

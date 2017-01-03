@@ -1,7 +1,7 @@
 body {
     background-color: grey;
-    height: 100vh;
-    min-height: 100vh;
+    height: 99vh;
+    min-height: 99vh;
     padding: 0;
     margin: 0;
 }
@@ -17,8 +17,8 @@ body {
     text-align: center;
 }
 
-#nav-panel>.btn,
-#control-panel>.btn{
+#nav-panel .btn,
+#control-panel .btn{
     width:150px;
     text-align: left;
     white-space: normal;
@@ -34,6 +34,14 @@ body {
     border: solid black;
 }
 
+#tab-panel{
+    height: calc(100% - 40px);
+}
+
+.tab-pane{
+    height: 100%;
+}
+
 #control-panel{
     width:100%;
     height:40px;
@@ -42,6 +50,7 @@ body {
 
 .welcome-panel, .search-panel, .login-panel, .register-panel, .room-panel{
     padding: 10px;
+    height: 100%;
 }
 
 .privacy-setting{
@@ -84,10 +93,37 @@ div#tab-panel>ul{
 }
 
 .chat-panel{
-    width:calc(100% - 120px);
-    height:100%;
+    width:calc(100% - 200px);
+    height:calc(100% - 70px);
+    display: inline-block;
 }
 .participants-panel{
-    width:150px;
+    width:200px;
     height:100%;
+    padding: 7px;
+    border:1px solid black;
+    display: inline-block;
+    float: right;
+}
+
+.participants-panel .participant{
+    white-space: normal;
+    border:1px solid black;
+    border-radius:10px;
+    background-color: white;
+    padding: 3px 6px;
+}
+
+.participant input{
+    display: none;
+}
+
+.chat-bubbles{
+    height: 100%;
+    overflow-y:scroll;
+}
+textarea.chat-message{
+    resize: none;
+    width:100%;
+    height: 40px;
 }
